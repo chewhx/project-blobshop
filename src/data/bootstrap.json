@@ -1,0 +1,76 @@
+[
+  {
+    "ffffff": {
+      "_id": "ffffff",
+      "name": "Bootstrap White",
+      "price": 99.99,
+      "theme": "Bootstrap",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "007bff": {
+      "_id": "007bff",
+      "name": "Bootstrap Primary",
+      "price": 99.99,
+      "theme": "Bootstrap",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "6c757d": {
+      "_id": "6c757d",
+      "name": "Bootstrap Secondary",
+      "price": 99.99,
+      "theme": "Bootstrap",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "28a745": {
+      "_id": "28a745",
+      "name": "Bootstrap Success",
+      "price": 99.99,
+      "theme": "Bootstrap",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "17a2b8": {
+      "_id": "17a2b8",
+      "name": "Bootstrap Info",
+      "price": 99.99,
+      "theme": "Bootstrap",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "ffc107": {
+      "_id": "ffc107",
+      "name": "Bootstrap Warning",
+      "price": 99.99,
+      "theme": "Bootstrap",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "dc3545": {
+      "_id": "dc3545",
+      "name": "Bootstrap Danger",
+      "price": 99.99,
+      "theme": "Bootstrap",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "f8f9fa": {
+      "_id": "f8f9fa",
+      "name": "Bootstrap Light",
+      "price": 99.99,
+      "theme": "Bootstrap",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "343a40": {
+      "_id": "343a40",
+      "name": "Bootstrap Dark",
+      "price": 99.99,
+      "theme": "Bootstrap",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    }
+  }
+]

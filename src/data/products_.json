@@ -1,0 +1,140 @@
+[
+  {
+    "ffffff": {
+      "_id": "ffffff",
+      "name": "Bootstrap White",
+      "price": 99.99,
+      "theme": "Bootstrap",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "007bff": {
+      "_id": "007bff",
+      "name": "Bootstrap Primary",
+      "price": 99.99,
+      "theme": "Bootstrap",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "6c757d": {
+      "_id": "6c757d",
+      "name": "Bootstrap Secondary",
+      "price": 99.99,
+      "theme": "Bootstrap",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "28a745": {
+      "_id": "28a745",
+      "name": "Bootstrap Success",
+      "price": 99.99,
+      "theme": "Bootstrap",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "17a2b8": {
+      "_id": "17a2b8",
+      "name": "Bootstrap Info",
+      "price": 99.99,
+      "theme": "Bootstrap",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "ffc107": {
+      "_id": "ffc107",
+      "name": "Bootstrap Warning",
+      "price": 99.99,
+      "theme": "Bootstrap",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "dc3545": {
+      "_id": "dc3545",
+      "name": "Bootstrap Danger",
+      "price": 99.99,
+      "theme": "Bootstrap",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "f8f9fa": {
+      "_id": "f8f9fa",
+      "name": "Bootstrap Light",
+      "price": 99.99,
+      "theme": "Bootstrap",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "343a40": {
+      "_id": "343a40",
+      "name": "Bootstrap Dark",
+      "price": 99.99,
+      "theme": "Bootstrap",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "ff2d55": {
+      "_id": "ff2d55",
+      "name": "Pink",
+      "price": 4.99,
+      "theme": "Apple UI",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "5856d6": {
+      "_id": "5856d6",
+      "name": "Purple",
+      "price": 4.99,
+      "theme": "Apple UI",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "ff9500": {
+      "_id": "ff9500",
+      "name": "Orange",
+      "price": 4.99,
+      "theme": "Apple UI",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "ffcc00": {
+      "_id": "ffcc00",
+      "name": "Yellow",
+      "price": 4.99,
+      "theme": "Apple UI",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "ff3b30": {
+      "_id": "ff3b30",
+      "name": "Red",
+      "price": 4.99,
+      "theme": "Apple UI",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "5ac8fa": {
+      "_id": "5ac8fa",
+      "name": "Teal Blue",
+      "price": 4.99,
+      "theme": "Apple UI",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "007aff": {
+      "_id": "007aff",
+      "name": "Blue",
+      "price": 4.99,
+      "theme": "Apple UI",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    },
+    "4cd964": {
+      "_id": "4cd964",
+      "name": "Green",
+      "price": 4.99,
+      "theme": "Apple UI",
+      "mode": ["default", "light", "dark"],
+      "rating": 4.5
+    }
+  }
+]
