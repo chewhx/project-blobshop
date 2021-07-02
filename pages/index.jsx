@@ -5,15 +5,10 @@ import React from "react";
 import { Button, Form, Container, Row, Col } from "react-bootstrap";
 import { Formik } from "formik";
 import getColorName from "../utils/getColorName";
+import { getRandomBlobPath } from "../lib/blobs";
 
-export default function Home() {
+export default function Home({ randomBlobPath }) {
   const initialValues = () => {
-    const blobSvgPath = blobs2.svgPath({
-      seed: Math.random(),
-      extraPoints: 10,
-      randomness: 5,
-      size: 256,
-    });
     return {
       seed: Math.random(),
       strokeColor: "#000000",
@@ -21,7 +16,6 @@ export default function Home() {
       fillColor: "#5cb85c",
       randomness: 5,
       extraPoints: 10,
-      svgPath: blobSvgPath,
     };
   };
 
@@ -33,7 +27,13 @@ export default function Home() {
       <Formik
         enableReinitialize
         initialValues={initialValues()}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={async (values) => {
+          const res = await fetch(`http://localhost:3000/api/blobs`, {
+            method: "POST",
+            body: JSON.stringify(values),
+          });
+          console.error(res);
+        }}
       >
         {({ values, handleChange, handleSubmit, setFieldValue }) => {
           return (
@@ -52,9 +52,9 @@ export default function Home() {
                       strokeWidth={values.strokeWidth}
                       fill={values.fillColor}
                       d={blobs2.svgPath({
-                        seed: values.seed,
-                        extraPoints: values.extraPoints,
-                        randomness: values.randomness,
+                        seed: Math.random(),
+                        extraPoints: 10,
+                        randomness: 5,
                         size: 256,
                       })}
                     />
@@ -158,4 +158,13 @@ export default function Home() {
       </Formik>
     </Layout>
   );
+}
+
+export async function getStaticProps() {
+  const randomBlobPath = await getRandomBlobPath();
+  return {
+    props: {
+      randomBlobPath,
+    },
+  };
 }
