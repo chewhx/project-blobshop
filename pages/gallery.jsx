@@ -2,11 +2,10 @@ import React from "react";
 import Layout from "../components/Layout";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
 import { getBlobs } from "../lib/blobs";
+import Blobcard from "../components/Blobcard";
+import { Box, Column } from "gestalt";
 
 export default function Gallery({ blobsData }) {
-
-  const svgRef = React.useRef();
-
   const downloadBlob = (blob, filename) => {
     const objectUrl = URL.createObjectURL(blob);
 
@@ -28,40 +27,14 @@ export default function Gallery({ blobsData }) {
 
   return (
     <Layout>
-      <h1>Gallery</h1>
       <Container>
-        <Row>
+        <Box display="flex" direction="row" wrap>
           {blobsData.map((each, idx) => (
-            <Col md={4} key={`blobs-${idx}`}>
-              <Card>
-                <Card.Body>
-                  <svg
-                    ref={svgRef}
-                    width="100%"
-                    height="100%"
-                    viewBox="0 0 256 256"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      stroke={each.strokeColor}
-                      strokeWidth={each.strokeWidth}
-                      fill={each.fillColor}
-                      d={each.svgPath}
-                    />
-                  </svg>
-                </Card.Body>
-                <Card.Footer>
-                  <div className="d-flex justify-content-around">
-                    <Button variant="light">Copy SVG</Button>
-                    <Button variant="light" onClick={() => downloadHandler()}>
-                      Download SVG
-                    </Button>
-                  </div>
-                </Card.Footer>
-              </Card>
-            </Col>
+            <Column smSpan={6} mdSpan={4} lgSpan={3} key={`blobs-${idx}`}>
+              <Blobcard blob={each} />
+            </Column>
           ))}
-        </Row>
+        </Box>
       </Container>
     </Layout>
   );

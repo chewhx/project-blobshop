@@ -9,15 +9,16 @@ import Blob from "../../models/Blob";
 const handler = async (req, res) => {
   try {
     if (req.method === "GET") {
-      const allBlobs = await Blob.find({});
+      const allBlobs = await Blob.find({}).sort("-createdAt");
       res.status(200).json(allBlobs);
       return;
     }
     if (req.method === "POST") {
-      const newBlob = await Blob.create(req.body);
+      const newBlob = await Blob.create(JSON.parse(req.body));
       if (newBlob) {
         res.status(201).json(newBlob);
       }
+      return;
     }
     res.status(422).send("Invalid request method");
   } catch (err) {

@@ -1,7 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
-import { Navbar, Nav, Container } from "react-bootstrap";
-
+import { Navbar, Nav } from "react-bootstrap";
+import NavBar from "./Nav";
+import { Container } from "gestalt";
 export const siteTitle = "Blobshop";
 export const siteSubtitle = "Your very own blobs";
 
@@ -14,29 +15,16 @@ export default function Layout({ children, home }) {
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         /> */}
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+        ></link>
         <meta name="og:title" content={siteTitle} />
         <title>{`${siteTitle} | ${siteSubtitle}`}</title>
       </Head>
-      <Navbar bg="light" expand="lg" className="mb-5">
-        <Container>
-          <Navbar.Brand href="/">
-            <h1>{siteTitle}</h1>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-          <Navbar.Collapse className="justify-content-end">
-            <Nav>
-              <Nav.Item className="my-3 my-lg-0">
-                <Link href="/">Home</Link>
-              </Nav.Item>
-              <Nav.Item className="my-3 my-lg-0">
-                <Link href="/gallery">Gallery</Link>
-              </Nav.Item>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <NavBar />
       <main style={{ minHeight: "70vh" }}>
         <Container>{children}</Container>
       </main>
