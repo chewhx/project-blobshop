@@ -9,7 +9,7 @@ const convertHexToRGBA = (hexCode, opacity) => {
   const g = parseInt(hex.substring(2, 4), 16);
   const b = parseInt(hex.substring(4, 6), 16);
 
-  return `rgba(${r},${g},${b},${opacity / 100})`;
+  return { r, g, b, a: opacity / 100 };
 };
 
 export default convertHexToRGBA;

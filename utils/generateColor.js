@@ -23,7 +23,7 @@ const generateColor = () => {
     results += letters[Math.floor(Math.random() * letters.length)];
     times++;
   }
-  return results;
+  return "#" + results;
 };
 
 export default generateColor;
