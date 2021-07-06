@@ -18,7 +18,7 @@ export default function Gallery({ blobsData }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const blobsData = await getBlobs();
   return {
     props: {
