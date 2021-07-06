@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IconButton } from "gestalt";
-import useIndexedDb from "../useIndexedDb";
+import useIndexedDb from "../../hooks/useIndexedDb";
 
 const IconPinLocal = ({ values }) => {
   const { addItem, removeItem } = useIndexedDb();
@@ -18,8 +18,11 @@ const IconPinLocal = ({ values }) => {
             removeItem(itemPinned);
             return false;
           } else {
-            const key = String(Date.now());
+            const key = String(values._id) || String(Date.now());
             setItemPinned(key);
+            if (values._id) {
+              delete values._id;
+            }
             addItem(key, values);
             return true;
           }

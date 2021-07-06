@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
-import { Navbar, Nav } from "react-bootstrap";
-import NavBar from "./Nav";
+import NavBar from "./_nav";
+import Footer from "./_footer";
 import { Container } from "gestalt";
 export const siteTitle = "Blobshop";
 export const siteSubtitle = "Your very own blobs";
@@ -17,10 +17,10 @@ export default function Layout({ children, home }) {
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
           crossOrigin="anonymous"
         /> */}
-        <link
+        {/* <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
-        ></link>
+        ></link> */}
         <meta name="og:title" content={siteTitle} />
         <title>{`${siteTitle} | ${siteSubtitle}`}</title>
       </Head>
@@ -28,6 +28,7 @@ export default function Layout({ children, home }) {
       <main style={{ minHeight: "70vh" }}>
         <Container>{children}</Container>
       </main>
+      <Footer />
     </>
   );
 }

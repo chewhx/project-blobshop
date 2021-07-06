@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import Layout from "../components/Layout";
+import Layout from "../layouts/_layout";
 import * as blobs2 from "blobs/v2";
 import getColorName from "../utils/getColorName";
 import generateColor from "../utils/generateColor";

@@ -1,14 +1,10 @@
 import React from "react";
-import { Modal, Form } from "react-bootstrap";
-import { Button, Card, Text, Box } from "gestalt";
-import SvgModal from "./SvgModal";
-import useDownloadSvg from "./useDownloadSvg";
-import DownloadOptions from "./Blobmaker/DownloadOptions";
+import { Card, Text, Box } from "gestalt";
+import DownloadOptions from "../Blobmaker/DownloadOptions";
+import IconPinLocal from "../Blobmaker/IconPinLocal";
 
 const Blobcard = ({ blob }) => {
   const svgRef = React.useRef();
-  const { downloadSvg } = useDownloadSvg({ svgRef, fileName: blob.name });
-  // --- Download svg: https://stackoverflow.com/questions/66610636/html-react-js-how-to-make-a-download-button-to-download-html-page-content
 
   return (
     <>
@@ -35,6 +31,7 @@ const Blobcard = ({ blob }) => {
           </Text>
           <Box display="flex" justifyContent="center" padding={2}>
             <DownloadOptions svg={svgRef} blob={blob} />
+            <IconPinLocal values={blob} />
           </Box>
         </Card>
       </Box>

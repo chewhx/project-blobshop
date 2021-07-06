@@ -50,12 +50,22 @@ const useIndexedDb = () => {
     }
   };
 
+  const getAllKeys = async () => {
+    try {
+      const keys = await localforage.keys();
+      return keys;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return {
     addItem,
     removeItem,
     getItem,
     getAllItems,
     clearAllItems,
+    getAllKeys,
   };
 };
 

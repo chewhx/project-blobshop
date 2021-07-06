@@ -1,31 +1,26 @@
 import React from "react";
-import { Row, Col, Form } from "react-bootstrap";
 import { Formik } from "formik";
 import * as blobs2 from "blobs/v2";
-import generateColor from "../utils/generateColor";
-import FormRange from "./Blobmaker/FormRange";
-import FormColor from "./Blobmaker/FormColor";
-import useDownloadSvg from "./useDownloadSvg";
-import SvgModal from "./SvgModal";
-import useIndexedDb from "./useIndexedDb";
-import DownloadOptions from "./Blobmaker/DownloadOptions";
-import IconPinLocal from "./Blobmaker/IconPinLocal";
-
+import generateColor from "../../utils/generateColor";
+import FormRange from "./FormRange";
+import FormColor from "./FormColor";
+import DownloadOptions from "./DownloadOptions";
+import IconPinLocal from "./IconPinLocal";
 import {
-  Button,
+  Tooltip,
   Flex,
   TextField,
   Label,
+  Text,
   Column,
   Box,
   IconButton,
 } from "gestalt";
-
-import useWindowSize from "./useWindowSize";
+import useWindowSize from "../../hooks/useWindowSize";
 
 const Blobmaker = ({ initialValues }) => {
   const submitHandler = async (values) => {
-    const res = await fetch(`http://localhost:3000/api/blobs`, {
+    const res = await fetch(`/api/blobs`, {
       method: "POST",
       body: JSON.stringify(values),
     });
@@ -34,15 +29,14 @@ const Blobmaker = ({ initialValues }) => {
 
   const svgRef = React.useRef(null);
 
-  const { downloadSvg } = useDownloadSvg({ svgRef, fileName: "blobshop" });
-
-  const { addItem } = useIndexedDb();
-
   const { width } = useWindowSize();
 
   return (
     <>
-      <Formik initialValues={initialValues} onSubmit={submitHandler}>
+      <Formik
+        initialValues={{ ...initialValues, lockColor: false }}
+        onSubmit={submitHandler}
+      >
         {({ values, handleChange, handleSubmit, setFieldValue }) => {
           return (
             <Box display="flex" wrap column={12}>
@@ -71,47 +65,58 @@ const Blobmaker = ({ initialValues }) => {
               </Column>
               <Column span={12} mdSpan={6}>
                 <Box padding={5}>
-                  <Flex
-                    gap={2}
+                  <Box
+                    display="flex"
+                    paddingY={6}
                     wrap
-                    justifyContent={width <= 576 ? "center" : "start"}
+                    justifyContent={width <= 576 ? "around" : "end"}
                   >
-                    <DownloadOptions svg={svgRef} blob={values} />
-                    <IconButton
-                      accessibilityLabel="shuffle-svg"
-                      icon="refresh"
-                      size="lg"
-                      onClick={() => {
-                        const seed = Math.random();
-                        const newSvgPath = blobs2.svgPath({
-                          seed,
-                          extraPoints: values.extraPoints,
-                          randomness: values.randomness,
-                          size: 256,
-                        });
-                        setFieldValue("seed", seed);
-                        setFieldValue("svgPath", newSvgPath);
-                        setFieldValue("fillColor", generateColor());
-                      }}
-                    />
-                    <IconButton
-                      accessibilityLabel="add-gallery-svg"
-                      icon="view-type-default"
-                      size="lg"
-                      onClick={handleSubmit}
-                    />
-                    <IconPinLocal values={values} />
-                  </Flex>
-                  <Form.Group className="my-4">
+                    <Tooltip text="Download">
+                      <DownloadOptions svg={svgRef} blob={values} />
+                    </Tooltip>
+                    <Tooltip text="Shuffle">
+                      <IconButton
+                        accessibilityLabel="shuffle-svg"
+                        icon="refresh"
+                        size="lg"
+                        onClick={() => {
+                          const seed = Math.random();
+                          const newSvgPath = blobs2.svgPath({
+                            seed,
+                            extraPoints: values.extraPoints,
+                            randomness: values.randomness,
+                            size: 256,
+                          });
+                          setFieldValue("seed", seed);
+                          setFieldValue("svgPath", newSvgPath);
+                          !values.lockColor &&
+                            setFieldValue("fillColor", generateColor());
+                        }}
+                      />
+                    </Tooltip>
+                    <Tooltip text="Post">
+                      <IconButton
+                        accessibilityLabel="add-gallery-svg"
+                        icon="view-type-default"
+                        size="lg"
+                        onClick={handleSubmit}
+                      />
+                    </Tooltip>
+                    <Tooltip text="Pin">
+                      <IconPinLocal values={values} />
+                    </Tooltip>
+                  </Box>
+                  <Box paddingY={4}>
                     <TextField
                       type="text"
                       id="name"
                       name="name"
                       label="Blob"
+                      width="100%"
                       value={values.name}
                       onChange={({ value }) => setFieldValue("name", value)}
                     />
-                  </Form.Group>
+                  </Box>
                   <FormRange
                     label="Points"
                     as="input"
@@ -138,25 +143,41 @@ const Blobmaker = ({ initialValues }) => {
                     value={values.randomness}
                     onChange={handleChange}
                   />
-                  <Row>
-                    <Col xs={6}>
-                      <Form.Label htmlFor="fillColor">Fill</Form.Label>
-                      <FormColor
-                        id="fillColor"
-                        name="fillColor"
-                        value={values.fillColor}
-                        onChange={(color) => setFieldValue("fillColor", color)}
-                        onClick={(color) => setFieldValue("fillColor", color)}
-                        icon={
-                          <i
-                            className="bi bi-droplet-fill"
-                            style={{ color: values.fillColor }}
-                          ></i>
-                        }
-                      />
-                    </Col>
-                    <Col xs={6}>
-                      <Form.Label htmlFor="strokeColor">Stroke</Form.Label>
+                  <Box display="flex" wrap column={12}>
+                    <Column span={6}>
+                      <Label htmlFor="fillColor">
+                        <Text inline>Fill</Text>
+                      </Label>
+                      <Flex>
+                        <FormColor
+                          id="fillColor"
+                          name="fillColor"
+                          value={values.fillColor}
+                          onChange={(color) =>
+                            setFieldValue("fillColor", color)
+                          }
+                          onClick={(color) => setFieldValue("fillColor", color)}
+                          icon={
+                            <i
+                              className="bi bi-droplet-fill"
+                              style={{ color: values.fillColor }}
+                            ></i>
+                          }
+                        />
+                        <IconButton
+                          accessibilityLabel="lock-color-svg"
+                          iconColor={values.lockColor ? "red" : "gray"}
+                          onClick={() =>
+                            setFieldValue("lockColor", !values.lockColor)
+                          }
+                          icon="lock"
+                        />
+                      </Flex>
+                    </Column>
+                    <Column span={6}>
+                      <Label htmlFor="strokeColor">
+                        <Text>Stroke</Text>
+                      </Label>
                       <FormColor
                         id="strokeColor"
                         name="strokeColor"
@@ -172,8 +193,8 @@ const Blobmaker = ({ initialValues }) => {
                           ></i>
                         }
                       />
-                    </Col>
-                  </Row>
+                    </Column>
+                  </Box>
                   <FormRange
                     label="Stroke Width"
                     as="input"

@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { HexColorPicker } from "react-colorful";
-import { Row, Col, Form } from "react-bootstrap";
-import hexToRgba from "../../utils/hexToRgba";
 import colorConvert from "color-convert";
 
-import { Button, Popover, Box, Column, Label, Text } from "gestalt";
+import { Button, Popover, Box, Column, TextField } from "gestalt";
 const FormColor = ({ value, onClick, onChange, icon, ...rest }) => {
   const [show, setShow] = useState(false);
 
@@ -64,7 +62,7 @@ const FormColor = ({ value, onClick, onChange, icon, ...rest }) => {
   const [r, g, b] = colorConvert.hex.rgb(value);
 
   return (
-    <div style={{ position: "relative" }}>
+    <Box position="relative" paddingY={3}>
       <Button
         ref={anchorRef}
         text={value.toUpperCase()}
@@ -80,91 +78,35 @@ const FormColor = ({ value, onClick, onChange, icon, ...rest }) => {
         >
           <Box>
             <HexColorPicker color={value} onChange={onChange} {...rest} />
-            <Box width="200px" column={12}>
+            <Box width="200px" column={12} paddingX={3}>
               <Column span={12}>
-                <Form.Control
-                  size="sm"
-                  value={value}
-                  onChange={(e) => onChange(e.target.value)}
-                />
+                <Box paddingY={2}>
+                  <TextField
+                    label="HEX"
+                    id="12"
+                    value={value}
+                    onChange={({ value }) => onChange(value)}
+                  />
+                </Box>
               </Column>
             </Box>
-            <Box display="flex" width="200px" wrap column={12}>
-              <Column span={4}>
-                <Label htmlFor="rgb-r">
-                  <Text align="center">R</Text>
-                </Label>
-                <Form.Control
-                  id="rgb-r"
-                  size="sm"
-                  style={{ width: "100%" }}
-                  type="number"
-                  min="0"
-                  max="256"
-                  value={colorConvert.hex.rgb(value)[0]}
-                  onChange={(e) => {
-                    onChange(
-                      `#${colorConvert.rgb.hex(Number(e.target.value), g, b)}`
-                    );
-                  }}
-                />
-              </Column>
-              <Column span={4}>
-                <Label htmlFor="rgb-g">
-                  <Text align="center">G</Text>
-                </Label>
-                <Form.Control
-                  id="rgb-g"
-                  size="sm"
-                  style={{ width: "100%" }}
-                  type="number"
-                  min="0"
-                  max="256"
-                  value={g}
-                  onChange={(e) => {
-                    onChange(
-                      `#${colorConvert.rgb.hex(r, Number(e.target.value), b)}`
-                    );
-                  }}
-                />
-              </Column>
-              <Column span={4}>
-                <Label htmlFor="rgb-b">
-                  <Text align="center">B</Text>
-                </Label>
-                <Form.Control
-                  id="rgb-b"
-                  size="sm"
-                  style={{ width: "100%" }}
-                  type="number"
-                  min="0"
-                  max="256"
-                  value={b}
-                  onChange={(e) => {
-                    onChange(
-                      `#${colorConvert.rgb.hex(r, g, Number(e.target.value))}`
-                    );
-                  }}
-                />
-              </Column>
-            </Box>
-            <Row style={{ width: "200px" }} className="m-0 p-1">
+            <Box display="flex" wrap column={12} width="200px" padding={1}>
               {draculaTheme.map((each, idx) => (
-                <Col className="p-0" key={`dracula-${idx}`}>
+                <Column span={2} key={`dracula-${idx}`}>
                   <div
                     style={{
                       width: "30px",
                       height: "30px",
                       backgroundColor: each.hex || "#e3e3e3",
                       border: "1px solid #e3e3e3",
-                      borderRadius: "5px",
+                      borderRadius: "10px",
                       cursor: "pointer",
                     }}
                     onClick={() => onClick(each.hex)}
                   ></div>
-                </Col>
+                </Column>
               ))}
-            </Row>
+            </Box>
           </Box>
         </Popover>
       )}
@@ -249,7 +191,7 @@ const FormColor = ({ value, onClick, onChange, icon, ...rest }) => {
           </Row>
         </div>
       )} */}
-    </div>
+    </Box>
   );
 };
 

@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { IconButton, Dropdown, Flex } from "gestalt";
-import useDownloadSvg from "../useDownloadSvg";
-import SvgModal from "../SvgModal";
+import useDownloadSvg from "../../hooks/useDownloadBlob";
 import copy from "copy-to-clipboard";
-import { set } from "mongoose";
 
 const ShareOptions = ({ svg, blob }) => {
   const [show, setShow] = useState(false);
@@ -12,7 +10,10 @@ const ShareOptions = ({ svg, blob }) => {
   const onSelect = ({ item }) =>
     setSelected(item.value === (selected || {}).value ? null : item);
 
-  const { downloadSvg } = useDownloadSvg({ svgRef: svg, fileName: blob.name });
+  const { downloadSvg, downloadPng } = useDownloadSvg({
+    svgRef: svg,
+    fileName: blob.name,
+  });
 
   return (
     <Flex justifyContent="center">
@@ -69,19 +70,15 @@ const ShareOptions = ({ svg, blob }) => {
                 randomness,
                 extraPoints,
               } = blob;
-              const queryString = `?seed=${seed}&fill=${fillColor.split("#")[1]}&strokeWidth=${strokeWidth}&strokeColor=${strokeColor.split("#")[1]}&randomness=${randomness}&extraPoints=${extraPoints}&size=256`;
+              const queryString = `?seed=${seed}&fill=${
+                fillColor.split("#")[1]
+              }&strokeWidth=${strokeWidth}&strokeColor=${
+                strokeColor.split("#")[1]
+              }&randomness=${randomness}&extraPoints=${extraPoints}&size=256`;
               const link = `http://localhost:3000/api/randomblob`;
               copy(link + queryString);
               setTimeout(() => setShow(false), 500);
             }}
-          />
-          <Dropdown.Item
-            option={{
-              value: "Download PNG",
-              label: "Download PNG",
-            }}
-            selected={selected}
-            onSelect={onSelect}
           />
         </Dropdown>
       )}

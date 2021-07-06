@@ -1,6 +1,6 @@
 import React from "react";
 
-const useDownloadSvg = ({ svgRef, fileName }) => {
+const useDownloadBlob = ({ svgRef, fileName }) => {
   function downloadBlobHandler(blob, fileName) {
     const objectUrl = URL.createObjectURL(blob);
 
@@ -20,7 +20,8 @@ const useDownloadSvg = ({ svgRef, fileName }) => {
     downloadBlobHandler(blobItem, `${fileName}.svg`);
   }, []);
 
+
   return { downloadSvg };
 };
 
-export default useDownloadSvg;
+export default useDownloadBlob;

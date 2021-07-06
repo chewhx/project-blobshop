@@ -1,12 +1,13 @@
 import React from "react";
-import { Form } from "react-bootstrap";
-import { Label, Box } from "gestalt";
-const FormRange = ({ label, ...rest }) => {
+import { Label, Box, Text } from "gestalt";
+const FormRange = ({ label, id, ...rest }) => {
   return (
     <>
       <Box paddingY={4}>
-        <Label htmlFor="extraPoints">{label}</Label>
-        <Form.Control {...rest} />
+        <Label htmlFor={id}>
+          <Text inline>{label}</Text>
+        </Label>
+        <input id={id} type="slider" {...rest} />
       </Box>
     </>
   );

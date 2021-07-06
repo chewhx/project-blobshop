@@ -1,16 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import {
-  Box,
-  Link as GLink,
-  Text,
-  Container,
-  Heading,
-  Column,
-  IconButton,
-} from "gestalt";
-import useWindowSize from "./useWindowSize";
+import { Box, Container, Heading, Column, IconButton } from "gestalt";
+import useWindowSize from "../hooks/useWindowSize";
 
 const Nav = () => {
   const router = useRouter();
@@ -43,10 +35,10 @@ const Nav = () => {
             {[
               ["logout", "/"],
               ["view-type-default", "/gallery"],
-              ["pin", "/cart"],
+              ["pin", "/local"],
             ].map(([icon, link], index) => (
               <Box
-                color={router.pathname == link ? "darkWash" : undefined}
+                color={router.pathname == link ? "watermelon" : undefined}
                 display="inlineBlock"
                 key={`nav-${index}`}
                 rounding="pill"
@@ -55,7 +47,6 @@ const Nav = () => {
                   <Link href={link}>
                     <span
                       style={{
-                        color: router.pathname == link ? "white" : "darkGray",
                         cursor: "pointer",
                         fontWeight: "bold",
                       }}
@@ -63,6 +54,7 @@ const Nav = () => {
                       <IconButton
                         accessibilityLabel="nav-gallery"
                         icon={icon}
+                        iconColor={router.pathname == link ? "white" : "gray"}
                         size="lg"
                       />
                     </span>
