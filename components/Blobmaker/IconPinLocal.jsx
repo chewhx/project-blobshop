@@ -18,7 +18,10 @@ const IconPinLocal = ({ values }) => {
             removeItem(itemPinned);
             return false;
           } else {
-            const key = String(values._id) || String(Date.now());
+            let key = "";
+            values._id
+              ? (key = String(values._id))
+              : (key = String(Date.now()));
             setItemPinned(key);
             if (values._id) {
               delete values._id;

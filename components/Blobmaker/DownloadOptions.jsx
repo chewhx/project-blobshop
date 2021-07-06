@@ -75,7 +75,7 @@ const ShareOptions = ({ svg, blob }) => {
               }&strokeWidth=${strokeWidth}&strokeColor=${
                 strokeColor.split("#")[1]
               }&randomness=${randomness}&extraPoints=${extraPoints}&size=256`;
-              const link = `http://localhost:3000/api/randomblob`;
+              const link = `https://project-blobshop.vercel.app/api/randomblob`;
               copy(link + queryString);
               setTimeout(() => setShow(false), 500);
             }}
