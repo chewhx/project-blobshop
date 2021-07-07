@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import Layout from "../layouts/_layout";
 import useIndexedDb from "../hooks/useIndexedDb";
 import BlobcardLocal from "../components/BlobcardLocal";
+import useWindowSize from "../hooks/useWindowSize";
 
-import { Table, Text, Button, Box, Column, Heading, TextField } from "gestalt";
+import { Button, Box, Column } from "gestalt";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState();
@@ -21,18 +22,22 @@ const Cart = () => {
     });
   };
 
+  const { width } = useWindowSize();
+
   return (
     <Layout>
-      <Button
-        text="Delete All"
-        size="lg"
-        onClick={() => {
-          clearAllItems();
-          setCartItems();
-        }}
-      />
+      <Box display="flex" justifyContent={width <= 574 ? "center" : "end"}>
+        <Button
+          text="Delete All"
+          size="lg"
+          onClick={() => {
+            clearAllItems();
+            setCartItems();
+          }}
+        />
+      </Box>
 
-      <Box display="flex" direction="row" wrap>
+      <Box display="flex" direction="row" wrap justifyContent="center">
         {cartItems &&
           cartItems.map(([key, object], idx) => (
             <>

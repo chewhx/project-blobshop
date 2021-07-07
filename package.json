@@ -1,8 +1,11 @@
 {
   "name": "project-blobshop",
   "version": "1.0.0",
-  "description": "",
+  "description": "Create and save digital blobs",
   "main": "index.js",
+  "repository": {
+    "url": "https://github.com/chewhx/project-blobshop.git"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
